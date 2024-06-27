@@ -5,11 +5,11 @@ on:
     types: [opened, synchronize, reopened, closed]
     paths:
       - README.md
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - README.md
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
 
 jobs:
   test:
@@ -24,7 +24,8 @@ jobs:
           LAST_NAME: Octocat
         run: |
           echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+          echo ${{ github.ref_name }}
       - name: Print goodbye
-        if: github.event.pull_request.merged == true
+        if: github.event.pull_request.merged == true && github.ref_name == 'main'
         run: |
           echo goodbye.
