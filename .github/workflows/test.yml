@@ -2,7 +2,7 @@ name: 'test'
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
     paths:
       - README.md
   push:
@@ -25,6 +25,6 @@ jobs:
         run: |
           echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
       - name: Print goodbye
-        if: github.event_name == 'push'
+        if: github.event.pull_request.merged == true
         run: |
           echo goodbye.
