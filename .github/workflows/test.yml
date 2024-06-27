@@ -1,0 +1,30 @@
+name: 'test'
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - README.md
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Print hello
+        env:
+          MY_VAR: Hi there! My name is
+          FIRST_NAME: Mona
+          MIDDLE_NAME: The
+          LAST_NAME: Octocat
+        run: |
+          echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+      - name: Print goodbye
+        if: github.event.pull_request.merged == true
+        run: |
+          echo goodbye.
