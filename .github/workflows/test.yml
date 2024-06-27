@@ -5,11 +5,11 @@ on:
     types: [opened, synchronize, reopened, closed]
     paths:
       - README.md
-  push:
-    branches:
-      - main
-    paths:
-      - README.md
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - README.md
 
 jobs:
   test:
